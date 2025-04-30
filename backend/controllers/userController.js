@@ -1,5 +1,5 @@
 import userModel from "../models/userModel.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import validator from "validator";
 
@@ -8,7 +8,7 @@ const createToken = (id) => {
 };
 
 // Route For User Login
-const loginUser = async (req,res) => {
+const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -76,15 +76,18 @@ const registerUser = async (req, res) => {
 };
 
 //Route for Admin login
-const adminLogin = async (req,res) => {
+const adminLogin = async (req, res) => {
   try {
-    const {email,password} = req.body
+    const { email, password } = req.body;
 
-    if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
-      const token = jwt.sign(email+password,process.env.JWT_SECRET);
-      res.json({success:true,token})
-    }else{
-      res.json({success:false,message:"Invalid Credentials"})
+    if (
+      email === process.env.ADMIN_EMAIL &&
+      password === process.env.ADMIN_PASSWORD
+    ) {
+      const token = jwt.sign(email + password, process.env.JWT_SECRET);
+      res.json({ success: true, token });
+    } else {
+      res.json({ success: false, message: "Invalid Credentials" });
     }
   } catch (error) {
     console.log(error);
