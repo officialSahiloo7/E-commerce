@@ -10,8 +10,10 @@ import Login from "./Components/Login";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
-export const currency =  '$'
+export const backendUrl =
+  import.meta.env.VITE_BACKEND_URL ||
+  "https://forever-backend-two-cyan.vercel.app";
+export const currency = "$";
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
@@ -38,10 +40,10 @@ const App = () => {
             <div className="w-[70%] mx-auto ml-[max(5vw,25px)] my-8 text-gray-600 text-base">
               <Routes>
                 {/* Redirect / to /list */}
-                <Route path="/" element={<Navigate to="" />} />  
-                <Route path="/add" element={<Add token={token}/>} />
-                <Route path="/list" element={<List token={token}/>} />
-                <Route path="/orders" element={<Orders token={token}/>} />
+                <Route path="/" element={<Navigate to="" />} />
+                <Route path="/add" element={<Add token={token} />} />
+                <Route path="/list" element={<List token={token} />} />
+                <Route path="/orders" element={<Orders token={token} />} />
               </Routes>
             </div>
           </div>
